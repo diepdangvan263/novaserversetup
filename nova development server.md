@@ -208,8 +208,8 @@ sudo pear install PHP_CodeSniffer
 <a name="php-cs-fixer"></a>
 ##php-cs-fixer
 ```shell
-sudo wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
-sudo chmod a+x /usr/local/bin/php-cs-fixer
+sudo wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/bin/php-cs-fixer
+sudo chmod a+x /usr/bin/php-cs-fixer
 ```
 
 <a name="phpstorm"></a>
