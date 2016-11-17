@@ -11,7 +11,7 @@ Install Mint 18 desktop using either the DVD or Thumb drive.  If you are using a
 #Installation stack
 
 * PHP Environment
-    * [PHP5](#php)
+    * [PHP5](#php5)
     * [PHP7](#php7)
     * [PEAR](#pear)
     * [Phing](#phing)
@@ -33,7 +33,6 @@ Install Mint 18 desktop using either the DVD or Thumb drive.  If you are using a
     * [PHPUnit](#phpunit)
     * [PHP CS Fixer](#php-cs-fixer)
     * [PHP CS Beautifier](php-beautifier)
-    * [PHPStorm IDE](#phpstorm)
     * [Sublime Text 3](#sublime)
 * Frontend Tools
     * [NodeJs + Grunt + Bower](#nodejs)
@@ -48,7 +47,7 @@ Install Mint 18 desktop using either the DVD or Thumb drive.  If you are using a
     * [Nginx config example](#nginx-config-example)
 
 #Installation PHP Environment
-<a name="php"></a>
+<a name="php5"></a>
 ##PHP5
 ```shell
 sudo apt-get install php5-cli php5-common php-apc php-pear php5-xdebug php5-curl php5 php5-dev
@@ -59,9 +58,9 @@ sudo apt-get install php5-intl php5-mbstring php-gettext
 <a name="php7"></a>
 ##PHP7.0
 ```shell
-sudo apt-get install php7.0-cli php7.0-common php-apc php-pear php7.0-xdebug php7.0-curl php7.0 php7.0-dev
+sudo apt-get install php7.0-cli php7.0-common php-apc php-pear php7.0-xdebug php7.0-curl php7.0
 sudo apt-get install php7.0-xsl php7.0-gd php7.0-imap php7.0-cli php7.0-cgi php7.0-json php7.0-zip
-sudo apt-get install php7.0-intl php7.0-mbstring php7.0-tidy php-gettext
+sudo apt-get install php7.0-intl php7.0-mbstring php7.0-tidy  php7.0-dev php-gettext
 ```
 
 <a name="pear"></a>
@@ -204,6 +203,8 @@ sudo pear install PHP_CodeSniffer
 ##PHPUnit
 ```shell
 
+```
+
 <a name="php-cs-fixer"></a>
 ##php-cs-fixer
 ```shell
@@ -232,8 +233,6 @@ sudo sysctl -p
 ```shell
 # nodejs
 sudo apt-get install python-software-properties
-sudo apt-add-repository ppa:chris-lea/node.js
-sudo apt-get update
 sudo apt-get install nodejs
 
 #grunt
@@ -270,7 +269,7 @@ sudo checkinstall
 ##Phpmyadmin
 *Mysql manager*
 ```shell
-
+sudo apt-get install phpmyadmin
 ```
 
 
@@ -290,6 +289,13 @@ html_errors = On
 post_max_size = 32m
 upload_max_filesize = 32m
 default_charset = utf8
+
+uncomment
+
+extension=php_fileinfo.dll
+extension=php_intl.dll
+extension=php_openssl.dll
+
 ```
 
 <a name="debugging-with-phpstorm"></a>
@@ -297,9 +303,7 @@ default_charset = utf8
 
 The example is made for PHPStorm IDE with Apache2 webserver. But other IDE's or webservers should work in a similar way.
 
-* Ubuntu 12.04
-  * Edit /etc/php5/cli/conf.d/xdebug.ini
-* Ubuntu 14.04
+* Mint 18
   * with php-fpm -> `sudo ln -s /etc/php5/mods-available/xdebug.ini /etc/php5/fpm/conf.d/20-xdebug.ini`
   * with apache2 -> `sudo ln -s /etc/php5/mods-available/xdebug.ini /etc/php5/apache2/conf.d/20-xdebug.ini`
   * with cli -> `sudo ln -s /etc/php5/mods-available/xdebug.ini /etc/php5/cli/conf.d/20-xdebug.ini`
@@ -340,12 +344,6 @@ source ~/.bashrc
 ##Debugging via Console
 * PHPStorm: Click on Run->Start Listen PHP Debug Connections
 * Set a breakpoint and run a console command
-
-##PHPStorm Config
-```shell
-#for PHPUnit Code Completion add PHPUnit path under file->settings->directories
-#Usually it’s stored in
-/usr/share/php/PHPUnit
 
 #for PHPUnit Skeleton Generator add phpunit-skelgen under file->settings->ProjectSettings->PHP->PHPUnit->SkeletonGenerator
 #Usually it's stored in
