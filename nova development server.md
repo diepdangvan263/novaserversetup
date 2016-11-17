@@ -18,6 +18,7 @@ Install Mint 18 desktop using either the DVD or Thumb drive.  If you are using a
 * General Environment
     * [git / github](#git)
     * [memcache](#memcache)
+    * [mycrypt](#mycrypt)
     * [apache2](#apache2)
     * [nginx](#nginx)
     * [mysql](#mysql)
@@ -26,7 +27,6 @@ Install Mint 18 desktop using either the DVD or Thumb drive.  If you are using a
     * [gmagick](#gmagick)
     * [imagemagic](#imagemagic)
     * [curl](#curl)
-    * [npm](#npm)
     * [composer](#composer)
 * PHP QA Environment
     * [PHP Codesniffer](#php-codesniffer)
@@ -47,6 +47,10 @@ Install Mint 18 desktop using either the DVD or Thumb drive.  If you are using a
     * [Nginx config example](#nginx-config-example)
 
 #Installation PHP Environment
+
+Nova Framework will run with either PHP 5.6 or 7.0.  Depending on what your host provider
+is running, choose that for your server.
+
 <a name="php5"></a>
 ##PHP5
 ```shell
@@ -80,7 +84,7 @@ sudo apt-get install phing
 <a name="git"></a>
 ##git
 ```shell
-sudo apt-get install git
+sudo apt-get install git-all
 git config --global color.branch auto
 git config --global color.diff auto
 git config --global color.status auto
@@ -91,14 +95,26 @@ git config --global color.status auto
 ##memcache
 ```shell
 sudo apt-get install memcached
-sudo apt-get install php5-memcache
+sudo apt-get install php-memcache
+```
+<a name="mcrypt"></a>
+##mcrypt
+```shell
+sudo apt-get install mycrypt
+
+for php5 use
+sudo apt-get install php5-mcrypt
+
+for php7 use
+sudo apt-get install php7.0-mcrypt
+
 ```
 
 <a name="apache2"></a>
 ##apache2
 ```shell
 sudo apt-get install apache2 apache2-suexec-pristine libapache2-mod-php
-sudo a2enmod suexec rewrite rewrite ssl actions include cgi
+sudo a2enmod suexec rewrite ssl actions include cgi
 sudo a2enmod dav_fs dav auth_digest headers
 ```
 **You should see the following question:**
@@ -110,24 +126,39 @@ Select apache2 and then ok.
 <a name="nginx"></a>
 ##nginx
 ```shell
-sudo apt-get install nginx php5-fpm
+sudo apt-get install nginx
+
+#for php5 use
+sudo apt-get install php5-fpm
 
 #edit listen port in /etc/php5/fpm/pool.d/www.conf
 listen = 127.0.0.1:9009
 
-sudo /etc/init.d/php5-fpm restart
+sudo service php5-fpm restart
+
+#for php7 use
+sudo apt-get install php7.0-fpm
+
+#edit listen port in /etc/php/7.0/fpm/pool.d/www.conf
+listen = 127.0.0.1:9009
+
+sudo service php7.0-fpm restart
+
+
+#now restart nginx
 sudo service nginx restart
 ```
+You can run either mysql or mariadb as your database server.
 
 <a name="mysql"></a>
 ##mysql
 ```shell
 sudo apt-get install mysql-server mysql-client
 
-for php5 use:
+#for php5 use:
 sudo apt-get install php5-mysql
 
-for php7.0 use:
+#for php7.0 use:
 sudo apt-get install php7.0-mysql
 
 ```
@@ -137,10 +168,10 @@ sudo apt-get install php7.0-mysql
 ```shell
 sudo apt-get install mariadb-server mariadb-client
 
-for php5 use:
+#for php5 use:
 sudo apt-get install php5-mysql
 
-for php7.0 use:
+#for php7.0 use:
 sudo apt-get install php7.0-mysql
 
 ```
@@ -148,10 +179,18 @@ sudo apt-get install php7.0-mysql
 <a name="sqlite"></a>
 ##SQLite
 ```shell
+
+#for php5 use
 sudo apt-get install sqlite3 php5-sqlite
 
-#comment in /etc/php5/conf.d/sqlite.ini
-extension=sqlite.so
+#comment in /etc/php/5.6/apache2/conf.d/20-sqlite3.ini
+extension=sqlite3.so
+
+#for php7.0 use
+sudo apt-get install sqlite3 php7.0-sqlite
+
+#comment in /etc/php/7.0/apache2/conf.d/20-sqlite3.ini
+extension=sqlite3.so
 ```
 
 <a name="gmagick"></a>
@@ -160,26 +199,26 @@ extension=sqlite.so
 sudo apt-get install graphicsmagick libgraphicsmagick1-dev
 sudo pecl install gmagick-beta
 
-#Create file /etc/php5/conf.d/gmagick.ini and add a line
+#for php5 use
+#Create file /etc/php/5.6/apache2/conf.d/20-gmagick.ini and add a line
+extension=gmagick.so
+
+#for php7.0 use
+#Create file /etc/php/7.0/apache2/conf.d/20-gmagick.ini and add a line
 extension=gmagick.so
 ```
 
 <a name="imagemagick"></a>
 ##imagemagick
 ```shell
-sudo apt-get install imagemagick
+sudo apt-get install imagemagick php-imagick
+
 ```
 
 <a name="curl"></a>
 ##curl
 ```shell
 sudo apt-get install curl
-```
-
-<a name="npm"></a>
-##npm
-```shell
-sudo apt-get install npm
 ```
 
 <a name="composer"></a>
@@ -233,6 +272,7 @@ sudo sysctl -p
 ```shell
 # nodejs
 sudo apt-get install python-software-properties
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install nodejs
 
 #grunt
