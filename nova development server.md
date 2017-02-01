@@ -54,17 +54,17 @@ is running, choose that for your server.
 <a name="php5"></a>
 ##PHP5
 ```shell
-sudo apt-get install php5-cli php5-common php-apc php-pear php5-xdebug php5-curl php5 php5-dev
-sudo apt-get install php5-xsl php5-gd php5-imap php5-cli php5-cgi php5-json php5-tidy php5-zip
-sudo apt-get install php5-intl php5-mbstring php-gettext
+sudo apt-get install php5-cli php5-common php-apcu php-pear php-xdebug php5-curl php5 php5-dev \
+php5-xsl php5-gd php5-imap php5-cli php5-cgi php5-json php5-tidy php5-zip \
+php5-intl php5-mbstring php-gettext
 ```
 
 <a name="php7"></a>
 ##PHP7.0
 ```shell
-sudo apt-get install php7.0-cli php7.0-common php-apc php-pear php7.0-xdebug php7.0-curl php7.0
-sudo apt-get install php7.0-xsl php7.0-gd php7.0-imap php7.0-cli php7.0-cgi php7.0-json php7.0-zip
-sudo apt-get install php7.0-intl php7.0-mbstring php7.0-tidy  php7.0-dev php-gettext
+sudo apt-get install php7.0-cli php7.0-common php-apcu php-pear php-xdebug php7.0-curl php7.0 \
+php7.0-xsl php7.0-gd php7.0-imap php7.0-cli php7.0-cgi php7.0-json php7.0-zip \
+php7.0-intl php7.0-mbstring php7.0-tidy php7.0-dev php-gettext
 ```
 
 <a name="pear"></a>
